@@ -1,0 +1,7 @@
+{
+  "name": "int20h-test-task",
+  "version": "1.0.0",
+  "main": "dist/index.js",
+  "author": "canpeople",
+  "license": "MIT"
+}
