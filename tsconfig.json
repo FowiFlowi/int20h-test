@@ -1,0 +1,23 @@
+{
+    "extends": "@tsconfig/node14/tsconfig.json",
+    "compilerOptions": {
+        "outDir": "dist",
+        "module": "commonJS",
+        "sourceMap": true,
+        "baseUrl": "./",
+        "paths": {
+            "@config": [
+                "src/config/index.js"
+            ],
+            "@interfaces/*": [
+                "src/interfaces/*"
+            ],
+            "@src/*": [
+                "src/*"
+            ]
+        }
+    },
+    "include": [
+        "src/**/*"
+    ]
+}
