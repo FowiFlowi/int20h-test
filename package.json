@@ -1,22 +1,22 @@
 {
   "name": "int20h-test-task",
   "version": "1.0.0",
-  "main": "dist/index.js",
+  "main": "dist/server/index.js",
   "author": "canpeople",
   "license": "MIT",
   "scripts": {
     "build": "rm -rf ./dist && tsc",
     "watch": "nodemon --watch \"src/**\" --ext \"ts\" --exec \"yarn build && yarn start\"",
     "lint": "eslint .",
-    "start": "node dist/index.js | pino-pretty -t"
+    "start": "node dist/server/index.js | pino-pretty -t"
   },
   "husky": {
     "pre-commit": "yarn lint"
   },
   "_moduleAliases": {
-    "@config": "dist/config/index.js",
-    "@interfaces": "dist/interfaces",
-    "@src": "dist/"
+    "@config": "dist/server/config/index.js",
+    "@interfaces": "dist/server/interfaces",
+    "@src": "dist/server/"
   },
   "dependencies": {
     "@koa/router": "^10.0.0",
