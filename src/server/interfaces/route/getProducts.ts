@@ -1,7 +1,10 @@
+import { ProductSort } from '@interfaces/service/product'
+import { SearchProductsResponse } from '@interfaces/service/provider/shop'
+
 export interface RouteRequestData {
-    search?: string
+    search: string
+    sort: ProductSort
+    weight?: number
 }
 
-export interface RouteResponse {
-    products: [{ name: string }]
-}
+export type RouteResponse = SearchProductsResponse

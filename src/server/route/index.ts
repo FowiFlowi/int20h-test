@@ -6,12 +6,10 @@ import ValidationError from '@src/errors/ValidationError'
 
 import getProducts from './getProducts'
 
-import { Route } from '@interfaces/route'
-
 class RouteHandler {
     private readonly router = new Router()
 
-    private readonly ajv = new Ajv()
+    private readonly ajv = new Ajv({ coerceTypes: true, useDefaults: true })
 
     set(app: Koa) {
         this.router.get('/api/products', this.handleRoute(getProducts))
@@ -21,7 +19,7 @@ class RouteHandler {
     }
 
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    private handleRoute(route: Route<any>): Koa.Middleware {
+    private handleRoute(route: any): Koa.Middleware {
         const { validationSchema } = route
         const validate = validationSchema && this.ajv.compile({ ...validationSchema, additionalProperties: false })
 

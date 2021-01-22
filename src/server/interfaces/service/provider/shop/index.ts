@@ -1,9 +1,21 @@
+import { ProductSort } from '@interfaces/service/product'
+
+export enum ShopName {
+    Auchan = 'auchan',
+    Novus = 'novus',
+    Varus = 'varus'
+}
+
 export interface Product {
+    shopName: ShopName
     name: string
-    price: string
+    price: number
+    url: string
+    weight: number
+    img?: string
     producer: {
-        name: string
-        logo: string
+        name?: string
+        logo?: string
     }
 }
 
@@ -13,5 +25,5 @@ export interface SearchProductsResponse {
 }
 
 export interface ShopProvider {
-    searchProducts(query: string): Promise<SearchProductsResponse>
+    searchProducts(query: string, sort: ProductSort, shopName: ShopName, weight?: number): Promise<SearchProductsResponse>
 }

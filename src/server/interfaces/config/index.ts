@@ -18,4 +18,14 @@ export default interface Config {
     logger: {
         level: Level
     }
+    zakaz: {
+        host: string
+        auchanStoreId: string
+        novusStoreId: string
+        varusStoreId: string
+    }
+
+    products: {
+        limit: number
+    }
 }

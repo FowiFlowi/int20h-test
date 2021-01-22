@@ -26,6 +26,7 @@
     "@types/uuid": "^8.3.0",
     "ajv": "^7.0.3",
     "dotenv-safe": "^8.2.0",
+    "got": "^11.8.1",
     "http-status": "^1.5.0",
     "koa": "^2.13.1",
     "koa-bodyparser": "^4.3.0",

@@ -8,7 +8,7 @@ export const errorHandlerMiddleware: Koa.Middleware = async function(ctx, next) 
         await next()
     } catch (err) {
         ctx.status = err.httpStatus || httpStatus.SERVICE_UNAVAILABLE
-        ctx.body = { error: { message: err.message, data: err.data } }
+        ctx.body = { error: { message: err.message, status: err.httpStatus, data: err.data } }
 
         logger.error({ err }, 'Request failed')
     }
