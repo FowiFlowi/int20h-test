@@ -17,6 +17,7 @@ export interface Product {
         name?: string
         logo?: string
     }
+    uuid: string
 }
 
 export interface SearchProductsResponse {

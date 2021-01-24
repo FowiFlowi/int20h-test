@@ -1,27 +1,36 @@
-import {noop} from '../utils/noop';
+import axios from 'axios';
+import { noop } from '../utils/noop';
 
-class Api {
+class ApiClient {
   constructor({url}) {
-    this.url = url
+    this.api = axios.create({
+      baseURL: url,
+    });
   }
 
-  async handleRequest(requestCallback = noop) {
+  requestOptionsValidator(ops) {
+    if (!ops.path) {
+      throw new Error('Path option is not defined!');
+    }
+  }
+
+  async handleRequest(requestCallback = noop, fallbackResponse = undefined) {
     try {
       const result = await requestCallback();
       return [result, undefined];
-    } catch (e) {
-      return [undefined, e];
+    } catch (error) {
+      return [fallbackResponse, error];
     }
   }
 
   async get(ops = {}) {
-    const response = await this.handleRequest(async () => {
-      const result = await fetch(this.url);
-      const resultJSON = await result.json();
-      return resultJSON;
-    });
-    return response;
+    this.requestOptionsValidator(ops);
+    return this.handleRequest(async () => {
+      const result = await this.api.get(ops.path, { params: ops.queryParams });
+      return result.data;
+    }, ops.fallbackResponse);
   }
 }
 
-export default new Api({url: 'https://jsonplaceholder.typicode.com/todos/1'});
+const defaultApiURL = 'http://localhost:3000/api'; // move to env variable
+export default new ApiClient({url: defaultApiURL});

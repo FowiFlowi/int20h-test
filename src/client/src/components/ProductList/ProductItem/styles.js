@@ -1,11 +1,15 @@
 import { makeStyles } from '@material-ui/core';
 
 export const useStyles = makeStyles(() => ({
-  image: {
+  price: {
+    fontWeight: 600,
+    color: '#000'
   },
-  notificationContentContainer: {
-    padding: '8px 8px 0px 8px',
-    minWidth: '300px',
+  productItemContainer: {
+    padding: '8px',
+  },
+  image: {
+    objectFit: 'contain'
   },
   fullHeight: {
     height: '100%',

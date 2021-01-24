@@ -25,7 +25,7 @@ export default function App() {
             noWrap
             className={classes.title}
           >
-            Dashboard
+            CAN
           </Typography>
           <Notifications />
         </Toolbar>

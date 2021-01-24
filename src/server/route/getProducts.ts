@@ -9,7 +9,7 @@ class GetProductsRoute implements Route<RouteRequestData> {
     validationSchema: JSONSchemaType<RouteRequestData> = {
         type: 'object',
         properties: {
-            search: { type: 'string', default: 'гречка', minLength: 3 },
+            search: { type: 'string', default: 'гречана крупа', minLength: 3 },
             sort: { type: 'number', enum: [-1, 1], default: 1 },
             weight: { type: 'number', nullable: true },
         },
