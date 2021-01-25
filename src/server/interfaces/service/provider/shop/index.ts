@@ -25,5 +25,5 @@ export interface SearchProductsResponse {
 }
 
 export interface ShopProvider {
-    searchProducts(query: string, sort: ProductSort, shopName: ShopName, weight?: number): Promise<SearchProductsResponse>
+    searchProducts(query: string, shopName: ShopName, sort?: ProductSort , weight?: number): Promise<SearchProductsResponse>
 }

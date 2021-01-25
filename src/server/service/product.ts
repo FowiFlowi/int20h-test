@@ -11,11 +11,11 @@ import { ProductSort } from '@interfaces/service/product'
 class ProductService {
     private readonly shopProvider: ShopProvider = zakazShopProvider
 
-    async getProducts(query: string, sort: ProductSort, weight?: number): Promise<SearchProductsResponse> {
+    async getProducts(query: string, sort: ProductSort = 1, weight?: number): Promise<SearchProductsResponse> {
         const tasks: Promise<SearchProductsResponse>[] = Object.values(ShopName).map(shopName => this.shopProvider.searchProducts(
             query,
-            sort,
             shopName,
+            sort,
             weight
         ))
         try {
