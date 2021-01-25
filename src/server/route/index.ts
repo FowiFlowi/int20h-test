@@ -5,6 +5,7 @@ import Ajv from 'ajv'
 import ValidationError from '@src/errors/ValidationError'
 
 import getProducts from './getProducts'
+import getPrices from './getPrices'
 
 class RouteHandler {
     private readonly router = new Router()
@@ -13,6 +14,7 @@ class RouteHandler {
 
     set(app: Koa) {
         this.router.get('/api/products', this.handleRoute(getProducts))
+        this.router.get('/api/product/prices', this.handleRoute(getPrices))
 
         app.use(this.router.routes())
         app.use(this.router.allowedMethods())

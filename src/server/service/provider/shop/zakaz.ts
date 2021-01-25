@@ -4,7 +4,7 @@ import got, { Response } from 'got'
 
 import config from '@config'
 
-import productDataMapper from '@src/dataMapper/productDataMapper'
+import productDataMapper from '@src/dataMapper/product'
 
 import { SearchProductsResponse, ShopName, ShopProvider } from '@interfaces/service/provider/shop'
 import { SortOption, ZakazResponse } from '@interfaces/service/provider/shop/zakaz'
@@ -22,10 +22,10 @@ class ZakazShopProvider implements ShopProvider {
         [-1, SortOption.PriceDesc],
     ])
 
-    async searchProducts(query: string, sort: ProductSort, shopName: ShopName, weight?: number): Promise<SearchProductsResponse> {
+    async searchProducts(query: string, shopName: ShopName, sort?: ProductSort, weight?: number): Promise<SearchProductsResponse> {
         const qs: string = querystring.stringify({
             q: query,
-            sort: this.mapProductSort.get(sort),
+            sort: sort && this.mapProductSort.get(sort),
             weight: weight && `${weight}g`,
         })
         const path = `/stores/${this.storeIdByShopName[shopName]}/products/search?${qs}`
@@ -38,7 +38,7 @@ class ZakazShopProvider implements ShopProvider {
     private async makeApiCall(path: string): Promise<ZakazResponse> {
         const url = `${config.zakaz.host}${path}`
 
-        const response: Response<ZakazResponse> = await got.get<ZakazResponse>(url, {
+        const response: Response<ZakazResponse> = await got.get(url, {
             responseType: 'json',
             headers: { 'accept-language': 'uk' },
         })
