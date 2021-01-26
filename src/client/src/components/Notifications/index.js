@@ -10,7 +10,6 @@ import Link from '@material-ui/core/Link';
 import CardMedia from '@material-ui/core/CardMedia';
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
-
 import { useStyles } from './styles';
 
 import canbusImage from './canbus.png';
@@ -62,7 +61,7 @@ export default function Notifications() {
                 image={canbusImage}
               />
             )}
-            <CardContent style={{padding: '16px 16px 16px 0px'}}>
+            <CardContent style={classes.cardContent}>
               <Typography
                 variant="body2"
                 color="textSecondary"

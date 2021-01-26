@@ -12,19 +12,20 @@ export const uiStore = store({
   isOpenModal: false,
 
   toggleModal() {
-    uiStore = !uiStore.isOpenModal;
+    uiStore.isOpenModal = !uiStore.isOpenModal;
   }
 });
 
-export const productList = store({
+export const productsStore = store({
   products: null,
+  prices: null,
   searchParams: {
     search: '',
     sort: 1,
     weight: '',
   },
   async loadProducts() {
-    const { searchParams } = productList;
+    const { searchParams } = productsStore;
     const requestParams = {
       path: '/products',
       fallbackResponse: { products: null },
@@ -35,20 +36,31 @@ export const productList = store({
       },
     };
 
-    productList.products = null;
+    productsStore.products = null;
     uiStore.isLoading = true;
     const [result, error] = await Api.get(requestParams);
-    productList.products = result.products && result.products.map(mapToEntity);
+    productsStore.products = result.products && result.products.map(mapToEntity);
+    uiStore.error = error;
+    uiStore.isLoading = false;
+  },
+  async loadProductsPrice() {
+    const requestParams = {
+      path: '/product/prices',
+      fallbackResponse: {prices: null},
+    }
+    uiStore.isLoading = true;
+    const [result, error] = await Api.get(requestParams);
+    productsStore.prices = result.prices
     uiStore.error = error;
     uiStore.isLoading = false;
   },
   getProductById(id) {
-    if (productList.products === null) {
+    if (productsStore.products === null) {
       return null;
     }
-    return productList.products.find((product) => product.uuid === id);
+    return productsStore.products.find((product) => product.uuid === id);
   },
   setSearchParam(param, value) {
-    productList.searchParams[param] = value;
+    productsStore.searchParams[param] = value;
   }
 });

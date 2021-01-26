@@ -1,17 +1,21 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
-
-import { useStyles } from './styles';
 import ProductsPage from '../components/ProductList';
 import Notifications from '../components/Notifications';
 import Modal from '../components/Modal';
+import { productsStore, uiStore } from '../store';
+import { useStyles } from './styles';
 
 export default function App() {
   const classes = useStyles();
+
+  useEffect(() => {
+    productsStore.loadProductsPrice();
+  })
 
   return (
     <div className={classes.root}>

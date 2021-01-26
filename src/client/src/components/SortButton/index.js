@@ -3,7 +3,7 @@ import { view } from '@risingstack/react-easy-state';
 import clsx from 'clsx';
 import Button from '@material-ui/core/Button';
 import SortIcon from '@material-ui/icons/Sort';
-import { productList, uiStore } from '../../store';
+import { productsStore, uiStore } from '../../store';
 import { useStyles } from './styles';
 
 const primaryColor = 'primary';
@@ -17,8 +17,8 @@ export default view(() => {
   const handleToggleSort = () => {
     const newSortValue = isSortTurn * -1;
     setIsSortTurn(newSortValue);
-    productList.setSearchParam('sort', newSortValue);
-    productList.loadProducts();
+    productsStore.setSearchParam('sort', newSortValue);
+    productsStore.loadProducts();
   };
 
   return (

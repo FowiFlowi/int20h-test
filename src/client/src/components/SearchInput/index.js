@@ -5,7 +5,7 @@ import Cancel from '@material-ui/icons/Cancel';
 import SearchIcon from '@material-ui/icons/Search';
 import IconButton from '@material-ui/core/IconButton';
 import InputAdornment from '@material-ui/core/InputAdornment';
-import { productList, uiStore } from '../../store';
+import { productsStore, uiStore } from '../../store';
 import { useStyles } from './styles';
 
 const defaultSearchValue = 'гречана крупа';
@@ -16,8 +16,8 @@ export default view(() => {
   const classes = useStyles();
 
   const handleSearchClick = (value) => {
-    productList.setSearchParam('search', value || searchValue);
-    productList.loadProducts();
+    productsStore.setSearchParam('search', value || searchValue);
+    productsStore.loadProducts();
   };
 
   const handleSearchInputOnChange = (e) => {

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { view } from '@risingstack/react-easy-state';
 import Typography from '@material-ui/core/Typography';
 import Slider from '@material-ui/core/Slider';
-import { productList, uiStore } from '../../store';
+import { productsStore, uiStore } from '../../store';
 import { useDebounce } from '../../utils/useDebounce';
 
 export default view(() => {
@@ -11,13 +11,13 @@ export default view(() => {
   const debounced = useDebounce(weight, 700);
 
   useEffect(() => {
-    productList.loadProducts();
+    productsStore.loadProducts();
   }, []);
 
   useEffect(() => {
     if (debounced) {
-      productList.setSearchParam('weight', weight);
-      productList.loadProducts();
+      productsStore.setSearchParam('weight', weight);
+      productsStore.loadProducts();
     }
   }, [debounced]);
 

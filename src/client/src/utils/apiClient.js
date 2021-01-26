@@ -32,5 +32,5 @@ class ApiClient {
   }
 }
 
-const defaultApiURL = 'http://localhost:3000/api'; // move to env variable
+const defaultApiURL = '/api';
 export default new ApiClient({url: defaultApiURL});

@@ -3,23 +3,27 @@ import { view } from '@risingstack/react-easy-state';
 import Grid from '@material-ui/core/Grid';
 import LinearProgress from '@material-ui/core/LinearProgress';
 import Card from '../ProductItem';
-import { productList } from '../../store';
+import { productsStore } from '../../store';
 import SearchInput from '../SearchInput';
 import WeightButton from '../WeightButton';
 import SortButton from '../SortButton';
+import TrendingButton from '../TrendingButton';
+import { useStyles } from './styles';
 
 export default view(() => {
-  const shouldRenderLoader = productList.products === null;
+  const shouldRenderLoader = productsStore.products === null;
+  const classes = useStyles();
 
   return (
     <div>
-      <Grid container justify="space-between" style={{ marginBottom: '8px' }}>
+      <Grid container justify="space-between" className={classes.pageWrapper}>
         <SearchInput />
-        <Grid container style={{ width: '20%' }} container direction="column">
+        <Grid container className={classes.contentWrapper} container direction="column">
           <Grid>
             <WeightButton />
           </Grid>
           <Grid container justify="flex-end">
+            <TrendingButton />
             <SortButton />
           </Grid>
         </Grid>
@@ -27,7 +31,7 @@ export default view(() => {
       {shouldRenderLoader && <LinearProgress color="primary" />}
       {!shouldRenderLoader && (
         <Grid container spacing={3} direction="row">
-          {productList.products.map((product) => {
+          {productsStore.products.map((product) => {
             return (
               <Grid item md={4} xs={12} key={product.uuid}>
                 <Card product={product} />
