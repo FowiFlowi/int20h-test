@@ -5,10 +5,4 @@ export const useStyles = makeStyles(() => ({
     marginBottom: '24px',
     width: '40%',
   },
-  turnOffSort: {
-    transform: "rotate(-180deg)",
-  },
-  turnOnSort: {
-    transform: "rotate(0)",
-  }
 }));

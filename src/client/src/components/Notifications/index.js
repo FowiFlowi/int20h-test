@@ -68,6 +68,7 @@ export default function Notifications() {
                 color="textSecondary"
                 component="b"
               >
+                Не чув про кан-шину?
                 <Link href={CAN_WIKI_URL} onClick={(e) => e.stopPropagation()}>
                   Дізнатися!
                 </Link>

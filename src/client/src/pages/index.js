@@ -1,5 +1,4 @@
 import React from 'react';
-import { BrowserRouter as Router } from 'react-router-dom';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -7,8 +6,9 @@ import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
 
 import { useStyles } from './styles';
-import RouterProvider from '../Router';
-import Notifications from '../../components/Root/Notifications';
+import ProductsPage from '../components/ProductList';
+import Notifications from '../components/Notifications';
+import Modal from '../components/Modal';
 
 export default function App() {
   const classes = useStyles();
@@ -33,10 +33,9 @@ export default function App() {
       <main className={classes.content}>
         <div className={classes.appBarSpacer} />
         <Container maxWidth="lg" className={classes.container}>
-          <Router>
-            <RouterProvider />
-          </Router>
+          <ProductsPage />
         </Container>
+        <Modal />
       </main>
     </div>
   );
