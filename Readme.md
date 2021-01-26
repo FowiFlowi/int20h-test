@@ -5,7 +5,7 @@
 ### Setup
 MongoDB should be running
 ```
-copy .env.example .env # update it if needed
+cp .env.example .env # update it if needed
 yarn
 yarn build
 yarn start
