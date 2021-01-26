@@ -1,3 +1,4 @@
+import { ScheduledTaskName } from '@interfaces/scheduled-task'
 import { Level } from 'pino'
 
 export enum Env {
@@ -24,8 +25,12 @@ export default interface Config {
         novusStoreId: string
         varusStoreId: string
     }
-
     products: {
         limit: number
+        defaultSearch: string
     }
+    productPrices: {
+        limit: number
+    }
+    scheduledTasks: Record<ScheduledTaskName, string>
 }

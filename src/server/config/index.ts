@@ -1,17 +1,21 @@
 import { Level } from 'pino'
 
 import Config, { Env } from '@interfaces/config'
+import { ScheduledTaskName } from '@interfaces/scheduled-task'
 
 const config: Config = {
     getEnv() {
         return <Env>process.env.NODE_ENV
     },
+
     isLocal() {
         return this.getEnv() === Env.Local
     },
+
     isDev() {
         return this.getEnv() === Env.Dev
     },
+
     isProd() {
         return this.getEnv() === Env.Prod
     },
@@ -35,6 +39,15 @@ const config: Config = {
 
     products: {
         limit: parseInt(<string>process.env.PRODUCTS_LIMIT, 10),
+        defaultSearch: <string>process.env.PRODUCTS_DEFAULT_SEARCH,
+    },
+
+    productPrices: {
+        limit: parseInt(<string>process.env.PRODUCT_PRICES_LIMIT, 10),
+    },
+
+    scheduledTasks: {
+        [ScheduledTaskName.LoadGrechkaPrice]: <string>process.env.CRON_TASK_TIME_LOAD_GRECHKA_PRICE,
     },
 }
 

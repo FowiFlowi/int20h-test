@@ -1,5 +1,7 @@
 import { JSONSchemaType } from 'ajv'
 
+import config from '@config'
+
 import productService from '@src/service/product'
 
 import { Route, RouteParams } from '@interfaces/route'
@@ -9,7 +11,7 @@ class GetProductsRoute implements Route<RouteRequestData> {
     validationSchema: JSONSchemaType<RouteRequestData> = {
         type: 'object',
         properties: {
-            search: { type: 'string', default: 'гречана крупа', minLength: 3 },
+            search: { type: 'string', default: config.products.defaultSearch, minLength: 3 },
             sort: { type: 'number', enum: [-1, 1], default: 1 },
             weight: { type: 'number', nullable: true },
         },

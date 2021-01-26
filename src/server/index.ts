@@ -9,6 +9,7 @@ import logger from '@src/logger'
 
 import middleware from '@src/middleware'
 import route from '@src/route'
+import scheduledTask from '@src/scheduledTask'
 
 class Main {
     private static readonly app = new Koa()
@@ -22,6 +23,8 @@ class Main {
         await mongoose.connect(config.db.uri, { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true })
         logger.info('Connected to the database')
 
+        scheduledTask.init()
+
         this.app.listen(
             config.port,
             () => logger.info(`Application started on ${config.port} port`)
@@ -29,6 +32,4 @@ class Main {
     }
 }
 
-(async () => {
-    await Main.start()
-})()
+Main.start()
