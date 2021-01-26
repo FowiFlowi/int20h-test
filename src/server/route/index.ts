@@ -1,5 +1,6 @@
 import Koa from 'koa'
 import Router from '@koa/router'
+import cors from '@koa/cors'
 import Ajv from 'ajv'
 
 import ValidationError from '@src/errors/ValidationError'
@@ -18,6 +19,7 @@ class RouteHandler {
 
         app.use(this.router.routes())
         app.use(this.router.allowedMethods())
+        app.use(cors())
     }
 
     // eslint-disable-next-line @typescript-eslint/no-explicit-any

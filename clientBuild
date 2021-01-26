@@ -1,0 +1,8 @@
+#!/bin/bash
+
+currentPath=$(pwd)
+
+cd src/client
+yarn
+yarn build
+mv ./build "${currentPath}/dist/client"
