@@ -61,7 +61,7 @@ export default function Notifications() {
                 image={canbusImage}
               />
             )}
-            <CardContent style={classes.cardContent}>
+            <CardContent>
               <Typography
                 variant="body2"
                 color="textSecondary"

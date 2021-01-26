@@ -8,7 +8,4 @@ export const useStyles = makeStyles(() => ({
   fullHeight: {
     height: '100%',
   },
-  cardContent: {
-    padding: '16px 16px 16px 0px',
-  }
 }));

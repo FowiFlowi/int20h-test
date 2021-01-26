@@ -17,7 +17,7 @@ export default view(() => {
 
   const handleSearchClick = (value) => {
     productsStore.setSearchParam('search', value || searchValue);
-    productsStore.loadProducts();
+    productsStore.loadSearchProducts();
   };
 
   const handleSearchInputOnChange = (e) => {

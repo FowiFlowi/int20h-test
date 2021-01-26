@@ -2,6 +2,7 @@
 
 currentPath=$(pwd)
 
+rm -rfv ./public
 cd src/client
 yarn
 yarn build

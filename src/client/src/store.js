@@ -24,7 +24,24 @@ export const productsStore = store({
     sort: 1,
     weight: '',
   },
-  async loadProducts() {
+  async loadSearchProducts() {
+    const { searchParams } = productsStore;
+    const requestParams = {
+      path: '/products',
+      fallbackResponse: { products: null },
+      queryParams: {
+        ...(searchParams.search && { search: searchParams.search }),
+        ...(searchParams.sort && { sort: searchParams.sort }),
+      },
+    };
+    productsStore.products = null;
+    uiStore.isLoading = true;
+    const [result, error] = await Api.get(requestParams);
+    productsStore.products = result.products && result.products.map(mapToEntity);
+    uiStore.error = error;
+    uiStore.isLoading = false;
+  },
+  async loadProducts(ops) {
     const { searchParams } = productsStore;
     const requestParams = {
       path: '/products',
